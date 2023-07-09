@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+  WebApi:
+    image: ${DOCKER_REGISTRY-}webapi
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
+
+  grpc.excelworker:
+    image: ${DOCKER_REGISTRY-}grpcexcelworker
+    build:
+      context: .
+      dockerfile: Grpc.ExcelWorker/Dockerfile
+
+  mssql:
+    image: "mcr.microsoft.com/mssql/server"

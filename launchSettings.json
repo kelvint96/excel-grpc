@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "documentprocessor": "StartDebugging",
+        "WebApi": "StartDebugging",
+        "signalrhub": "StartDebugging",
+        "grpc.excelworker": "StartDebugging"
+      }
+    }
+  }
+}
