@@ -9,7 +9,9 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grpc.ExcelWorker", "Grpc.ExcelWorker\Grpc.ExcelWorker.csproj", "{87CDB2FF-E414-4CB0-A0EB-C4CA57BDE10E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageContract", "MessageContract\MessageContract.csproj", "{C36A8D40-8828-4F96-88EA-790395993D26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageContract", "MessageContract\MessageContract.csproj", "{C36A8D40-8828-4F96-88EA-790395993D26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grpc.CsvWorker", "Grpc.CsvWorker\Grpc.CsvWorker.csproj", "{3E7F8BC6-3271-4FD1-9E74-3276C0433F9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C36A8D40-8828-4F96-88EA-790395993D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C36A8D40-8828-4F96-88EA-790395993D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C36A8D40-8828-4F96-88EA-790395993D26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E7F8BC6-3271-4FD1-9E74-3276C0433F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E7F8BC6-3271-4FD1-9E74-3276C0433F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E7F8BC6-3271-4FD1-9E74-3276C0433F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E7F8BC6-3271-4FD1-9E74-3276C0433F9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,8 @@
         "documentprocessor": "StartDebugging",
         "WebApi": "StartDebugging",
         "signalrhub": "StartDebugging",
-        "grpc.excelworker": "StartDebugging"
+        "grpc.excelworker": "StartDebugging",
+        "grpc.csvworker": "StartDebugging"
       }
     }
   }

@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 package worker;
 
 service Worker {
-  rpc CreateExcelStream (stream Batch) returns (stream DataChunk);
+  rpc CreateStream (stream Batch) returns (stream DataChunk);
 }
 message Batch{
     int32 batchNumber = 1;
@@ -22,5 +22,6 @@ message BatchData {
 }
 
 message DataChunk {
-   bytes chunk = 4;
+   bool isFinalChunk = 1;
+   bytes chunk = 2;
 }

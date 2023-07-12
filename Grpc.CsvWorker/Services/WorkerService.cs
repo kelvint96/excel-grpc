@@ -1,9 +1,11 @@
-﻿using Google.Protobuf;
+﻿using CsvHelper;
+using Google.Protobuf;
 using Grpc.Core;
-using LargeXlsx;
 using MessageContract.Worker;
+using System.Globalization;
+using System.Text;
 
-namespace Grpc.ExcelWorker.Services
+namespace Grpc.CsvWorker.Services
 {
     public class WorkerService : Worker.WorkerBase
     {
@@ -17,16 +19,16 @@ namespace Grpc.ExcelWorker.Services
         public override async Task CreateStream(IAsyncStreamReader<Batch> requestStream, IServerStreamWriter<DataChunk> responseStream, ServerCallContext context)
         {
             var stream = new MemoryStream();
-            using var writer = new XlsxWriter(stream, useZip64: true);
+            using var writer = new StreamWriter(stream, Encoding.UTF8, 1024, true);
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture, true);
 
             // Initializing excel headers
-            writer.BeginWorksheet("Sheet 1")
-                .BeginRow()
-                .Write("Id")
-                .Write("Name")
-                .Write("Description")
-                .Write("UpdatedDate")
-                .Write("CreatedDate");
+            csv.WriteField("Id");
+            csv.WriteField("Name");
+            csv.WriteField("Description");
+            csv.WriteField("UpdatedDate");
+            csv.WriteField("CreatedDate");
+            await csv.NextRecordAsync();
 
             int bytesRead = 0;
             await foreach (var batch in requestStream.ReadAllAsync())
@@ -34,13 +36,12 @@ namespace Grpc.ExcelWorker.Services
                 _logger.LogInformation("Processing batch number: {batch}", batch.BatchNumber);
                 foreach (var data in batch.DataSet)
                 {
-                    writer.BeginRow();
-
-                    writer.Write(data.Id.ToString());
-                    writer.Write(data.Name);
-                    writer.Write(data.Description);
-                    writer.Write(data.UpdatedDate.ToDateTime());
-                    writer.Write(data.CreatedDate.ToDateTime());
+                    csv.WriteField(data.Id.ToString());
+                    csv.WriteField(data.Name);
+                    csv.WriteField(data.Description);
+                    csv.WriteField(data.UpdatedDate.ToDateTime());
+                    csv.WriteField(data.CreatedDate.ToDateTime());
+                    await csv.NextRecordAsync();
                 }
 
                 stream.Position = bytesRead;

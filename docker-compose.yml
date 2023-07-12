@@ -15,3 +15,10 @@ services:
 
   mssql:
     image: "mcr.microsoft.com/mssql/server"
+
+  grpc.csvworker:
+    image: ${DOCKER_REGISTRY-}grpccsvworker
+    build:
+      context: .
+      dockerfile: Grpc.CsvWorker/Dockerfile
+
